@@ -33,4 +33,5 @@ jobs:
         if: "${{ github.event.inputs.clean_cache == 'true' }}"
         run: |
           echo ${{secrets.TEST_ENV}}
+          ./redpill_tool_chain.sh sn ${{matrix.platform}}
       
