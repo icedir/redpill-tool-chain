@@ -29,9 +29,30 @@ jobs:
           - platform: ds918p
             version: 7.1.0-42661
     steps:
-      - name: 测试变量输出
+      - name: 检出项目文件
+        uses: actions/checkout@v3
+
+      - name: 缓存加速
+        uses: actions/cache@v3
+        with:
+          path: |
+            cache/*.pat
+            cache/*.org
+            docker/downloads/*.txz
+          key: ${{matrix.platform}}-${{matrix.version}}-${{ hashFiles('global_config.json') }}
+          restore-keys: ${{matrix.platform}}-${{matrix.version}}-
+
+      - name: 清理缓存
         if: "${{ github.event.inputs.clean_cache == 'true' }}"
         run: |
-          echo ${{secrets.TEST_ENV}}
+          rm -rf cache/*.pat
+          rm -rf cache/*.org
+          rm -rf docker/downloads/*.txz
+      - name: 准备构建环境
+        run: |
+          ./redpill_tool_chain.sh build ${{matrix.platform}}-${{matrix.version}}
+      - name: 配置引导镜像
+        run: |
+          # 调整SN和MAC,最好使用 actions secrets 引入,SN应该是固定值不应该每次生成
           ./redpill_tool_chain.sh sn ${{matrix.platform}}
       
