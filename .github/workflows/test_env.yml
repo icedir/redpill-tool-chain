@@ -1,4 +1,4 @@
-name: 测试变量
+name: 生成MAC和SN
 
 on:
   workflow_dispatch:
