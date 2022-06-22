@@ -66,7 +66,7 @@ jobs:
           sed -i -e "s/1234XXX123/${{secrets.MY_SN}}/g" -e 's/XXYYXXYYXXYY/${{secrets.MY_MAC}}/g' ${{matrix.platform}}_user_config.json
 
           # 添加第二张网卡mac并设置网卡数量，没有第二张网卡的可以注释掉下面这一行
-          sed -i -e 's/XXYYXXYYXXYX"/&,\n\t"mac2": '${{secrets.MY_MAC2}}',\n\t"netif_num": 2/' ${{matrix.platform}}_user_config.json
+          sed -i -e 's/XXYYXXYYXXYX/${{secrets.MY_MAC2}}/g',\n\t"netif_num": 2/' ${{matrix.platform}}_user_config.json
 
           # 调整synoinfo
           sed -i -e 's/"synoinfo": {},/"synoinfo": {\n\t"maxlanport": "2"\n    },/' ${{matrix.platform}}_user_config.json
