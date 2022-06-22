@@ -6,7 +6,8 @@
         "SataPortMap": "4",
         "SasIdxMap": "0",
         "sn": "1234XXX123",
-        "mac1": "XXYYXXYYXXYY"
+        "mac1": "XXYYXXYYXXYY",
+        "mac2": "XXYYXXYYXXYX"
     },
     "synoinfo": {},
     "ramdisk_copy": {},
