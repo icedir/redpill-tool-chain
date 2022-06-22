@@ -1,4 +1,4 @@
-name: 构建MY_NAS
+name: 构建MY_NAS_OTHER
 
 on:
   workflow_dispatch:
